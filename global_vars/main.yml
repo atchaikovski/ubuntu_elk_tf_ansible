@@ -1,0 +1,15 @@
+
+user: devops
+ssh_port: 22
+tmzone: "Europe/Moscow"
+sudo_timeout: 60
+
+# Set ufw logging: on | off | low | medium | high | full
+ufw_log: off
+
+# SSH socket config used for 22.10 and later.
+# Disable any existing listen stream and enable the new stream.
+ssh_socket_cfg: |
+  [Socket]
+  ListenStream=
+  ListenStream={{ ssh_port }}

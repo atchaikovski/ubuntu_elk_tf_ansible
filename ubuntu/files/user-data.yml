@@ -1,0 +1,21 @@
+#cloud-config
+locale: en_US
+# users:
+# - name: devops
+#   gecos: devops
+#   groups: [adm,cdrom,sudo,dip,plugdev,netdev]
+#   sudo: ALL=(ALL) NOPASSWD:ALL
+#   shell: /bin/bash
+
+write_files:
+- path: /home/devops/hello.txt
+  append: true
+  content: |
+    [user]
+    default=devops
+    hello!
+
+packages: [net-tools, git]
+
+runcmd:
+   - sudo apt-get install zip curl lynx -y

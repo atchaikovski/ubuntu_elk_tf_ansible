@@ -1,0 +1,20 @@
+---
+# tasks file for elastic
+
+- name: Copy elastic over to server
+  copy:
+    src: files/elasticsearch-8.14.3-amd64.deb
+    dest: /home/{{user}}
+    owner: "{{user}}"
+    group: "{{user}}"
+
+- name: install elasticsearch
+  shell: |
+    cd /home/{{user}}
+    sudo apt install ./elasticsearch-8.14.3-amd64.deb -y
+
+- name: enable elastic
+  systemd: 
+    name: elasticsearch
+    state: started
+    enabled: true

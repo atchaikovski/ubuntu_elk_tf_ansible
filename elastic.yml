@@ -1,0 +1,10 @@
+# Setup of Elasticsearch server
+#
+---
+- hosts: "elastic"
+  vars_files: global_vars/main.yml
+  become: yes
+  roles: 
+    - ubuntu
+    - elastic
+

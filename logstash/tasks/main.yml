@@ -1,0 +1,19 @@
+---
+# tasks file for logstash
+- name: Copy logstash over to server
+  copy:
+    src: files/logstash-8.14.3-amd64.deb
+    dest: /home/{{user}}
+    owner: "{{user}}"
+    group: "{{user}}"
+
+- name: install logstash
+  shell: |
+    cd /home/{{user}}
+    sudo apt install ./logstash-8.14.3-amd64.deb -y
+
+- name: enable logstash
+  systemd: 
+    name: logstash
+    state: started
+    enabled: true

@@ -1,0 +1,11 @@
+# Setup of Kibana software 
+#
+---
+- hosts: "kibana"
+  vars_files: global_vars/main.yml
+  become: yes
+  roles: 
+    - ubuntu
+    - kibana
+
+

@@ -1,0 +1,19 @@
+---
+# tasks file for kibana
+- name: Copy kibana over to server
+  copy:
+    src: files/kibana-8.14.3-amd64.deb
+    dest: /home/{{user}}
+    owner: "{{user}}"
+    group: "{{user}}"
+
+- name: install kibana
+  shell: |
+    cd /home/{{user}}
+    sudo apt install ./kibana-8.14.3-amd64.deb
+
+- name: enable kibana
+  systemd: 
+    name: kibana
+    state: started
+    enabled: true
